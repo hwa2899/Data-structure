@@ -1,0 +1,89 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Dec  1 04:34:48 2018
+
+@author: xiu
+"""
+
+class Node():
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+class LinkedList():
+    def __init__(self):
+        self.head = Node(None)
+    def insertAtLastNode(self, newNode):
+        curNode = self.head
+        while curNode.next != None:
+            curNode = curNode.next
+        curNode.next = newNode
+class Queue():
+    def __init__(self, queueCapacity):
+        assert queueCapacity > 0, "QueueCapacity需大於0"
+        self.capacity = queueCapacity
+        self.myQueue = [None] * self.capacity
+        self.front = -1
+        self.rear = -1
+    def isEmpty(self):
+        if self.front == self.rear:
+            return True
+        else:
+            return False
+    def Push(self, value):
+        self.rear += 1
+        self.myQueue[self.rear] = value
+    def Pop(self):
+        self.front += 1
+        return self.myQueue[self.front]
+class Graph():
+    def __init__(self, nv):
+        self.n = nv
+        self.headNodes = [None] * nv
+        self.visited = [False] * nv
+    def BFS(self, v):
+        self.visited[v] = True
+        print(v)
+        queue = Queue(self.n)
+        queue.Push(Node(v))
+        while not queue.isEmpty():
+            v = queue.Pop().data
+            curNode = self.headNodes[v].head.next
+            while curNode != None:
+                if not self.visited[curNode.data]:
+                    queue.Push(Node(curNode.data))
+                    self.visited[curNode.data] = True
+                    print(curNode.data)
+                curNode = curNode.next
+                
+#執行
+L0 = LinkedList()
+L0.insertAtLastNode(Node(1))
+L0.insertAtLastNode(Node(2))
+L1 = LinkedList()
+L1.insertAtLastNode(Node(0))
+L1.insertAtLastNode(Node(3))
+L1.insertAtLastNode(Node(4))
+L2 = LinkedList()
+L2.insertAtLastNode(Node(0))
+L2.insertAtLastNode(Node(5))
+L2.insertAtLastNode(Node(6))
+L3 = LinkedList()
+L3.insertAtLastNode(Node(1))
+L3.insertAtLastNode(Node(7))
+L4 = LinkedList()
+L4.insertAtLastNode(Node(1))
+L4.insertAtLastNode(Node(7))
+L5 = LinkedList()
+L5.insertAtLastNode(Node(2))
+L5.insertAtLastNode(Node(7))
+L6 = LinkedList()
+L6.insertAtLastNode(Node(2))
+L6.insertAtLastNode(Node(7))
+L7 = LinkedList()
+L7.insertAtLastNode(Node(3))
+L7.insertAtLastNode(Node(4))
+L7.insertAtLastNode(Node(5))
+L7.insertAtLastNode(Node(6))
+g = Graph(8)
+g.headNodes = [L0, L1, L2, L3, L4, L5, L6, L7]
+g.BFS(0)

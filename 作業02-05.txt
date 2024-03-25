@@ -1,0 +1,51 @@
+﻿class Term():
+    def __init__(self, coef, exp):
+        self.coef = coef
+        self.exp = exp
+    def show(self):
+        print([self.coef, self.exp])
+
+def Polynomial_add(P1, P2):
+    finalP = []
+    firstPos = 0
+    secondPos = 0
+    firstNumTerm = len(P1)
+    secondNumTerm = len(P2)
+    
+    while (firstPos < firstNumTerm) and (secondPos < secondNumTerm):
+        if P1[firstPos].exp == P2[secondPos].exp:
+            t = P1[firstPos].coef + P2[secondPos].coef
+            finalP.append(Term(t, P1[firstPos].exp))
+            firstPos = firstPos + 1
+            secondPos = secondPos + 1
+            
+        elif P1[firstPos].exp < P2[secondPos].exp:
+            finalP.append(Term(P2[secondPos].coef, P2[secondPos].exp))
+            secondPos = secondPos + 1
+            
+        else:
+            finalP.append(Term(P1[firstPos].coef, P1[firstPos].exp))
+            firstPos = firstPos + 1
+            
+    while firstPos < firstNumTerm:
+        finalP.append(Term(P1[secondPos].coef, P1[secondPos].exp))
+        firstPos = firstPos + 1
+        
+    while secondPos < secondNumTerm:
+        finalP.append(Term(P2[secondPos].coef, P2[secondPos].exp))
+        secondPos = secondPos + 1
+        
+    return finalP
+
+#執行        
+P1 = [Term(8,2), Term(5,0)] 
+P2 = [Term(3,3), Term(2,2), Term(1,1), Term(1,0)]
+finalP = Polynomial_add(P1, P2)         
+for i in finalP:
+    i.show()
+print()
+P3 = [Term(2, 2)]
+P4 = [Term(4, 1),Term(3, 0)]
+finalP = Polynomial_add(P3, P4)         
+for i in finalP:
+    i.show()       

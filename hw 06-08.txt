@@ -1,0 +1,9 @@
+hw 0608
+From Boston to:
+New York(4,5) 250
+Chicago (4,5,3) 1250
+Miami (4,5,6) 1150
+Denver (4,5,3,2) 2450
+New Orleans(4,5,7)1650
+San Francisco(4,5,3,2,1) 3250
+Los Angeles(4,5,7,0) 3350

@@ -1,0 +1,22 @@
+﻿def Boolean_checkUpperTriangular(matrix):
+    for i in range(5):
+        for j in range(5):
+            if i > j:
+                if matrix[i][j] != 0:
+                    return "這不是上三角矩陣!"
+    return "這是上三角矩陣!"   
+        
+def Change(matrix):
+    new_array = []
+    for i in range(5):
+        for j in range(5):
+            if i <= j:
+                new_array.append(matrix[i][j])
+    return new_array
+
+#執行
+matrix1 = [[1,2,3,4,5], [6,7,8,9,10], [11,12,13,14,15], [16,17,18,19,20], [21,22,23,24,25]]               
+matrix2 = [[1,2,3,4,5], [0,6,7,8,9], [0,0,10,11,12], [0,0,0,13,14], [0,0,0,0,15]]             
+print(Boolean_checkUpperTriangular(matrix1))
+print(Boolean_checkUpperTriangular(matrix2))
+print(Change(matrix2)) 
